@@ -33,6 +33,7 @@ declare namespace LocalJSX {
     interface AppRoot {
     }
     interface NewGame {
+        "onStartNewGame"?: (event: CustomEvent<any>) => void;
     }
     interface IntrinsicElements {
         "app-root": AppRoot;

@@ -1,4 +1,9 @@
-import { Component, Host, h, State } from '@stencil/core';
+import { Component, Host, h, State, EventEmitter, Event } from '@stencil/core';
+
+export interface NewGameData {
+	player1: string,
+	player2: string,
+}
 
 @Component({
 	tag: 'new-game',
@@ -9,6 +14,8 @@ export class NewGame {
 	@State() private validationMessages: string[] = [];
 	@State() private player1Name: string = '';
 	@State() private player2Name: string = '';
+
+	@Event() startNewGame: EventEmitter<NewGameData> | undefined;
 
 	render() {
 		const validation = this.renderValidationMessages();
@@ -34,6 +41,10 @@ export class NewGame {
 			newMessages.push('Please enter name of Player 2');
 		}
 		this.validationMessages = newMessages;
+
+		if(this.validationMessages.length === 0) {
+			this.startNewGame?.emit({ player1: this.player1Name, player2: this.player2Name, });
+		}
 	}
 
 	private renderValidationMessages() {
