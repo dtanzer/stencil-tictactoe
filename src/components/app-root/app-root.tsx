@@ -16,7 +16,8 @@ export class AppRoot {
 	}
 
 	render() {
-		const newGame = this.running? undefined : <new-game foo="bar" onStartNewGame={e => this.startGame(e.detail)}></new-game>
+		const newGame = this.running? undefined : <new-game foo="bar" onStartNewGame={e => this.startGame(e.detail)}></new-game>;
+		const board = this.running? <game-board player1={this.data?.player1}  player2={this.data?.player2}></game-board> : undefined;
 
 		return (
 			<div>
@@ -26,6 +27,7 @@ export class AppRoot {
 
 				<main>
 					{ newGame }
+					{ board }
 				</main>
 			</div>
 		);

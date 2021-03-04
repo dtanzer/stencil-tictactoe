@@ -8,6 +8,10 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface AppRoot {
     }
+    interface GameBoard {
+        "player1": string;
+        "player2": string;
+    }
     interface NewGame {
         "foo": string | undefined;
     }
@@ -19,6 +23,12 @@ declare global {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
     };
+    interface HTMLGameBoardElement extends Components.GameBoard, HTMLStencilElement {
+    }
+    var HTMLGameBoardElement: {
+        prototype: HTMLGameBoardElement;
+        new (): HTMLGameBoardElement;
+    };
     interface HTMLNewGameElement extends Components.NewGame, HTMLStencilElement {
     }
     var HTMLNewGameElement: {
@@ -27,11 +37,16 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "app-root": HTMLAppRootElement;
+        "game-board": HTMLGameBoardElement;
         "new-game": HTMLNewGameElement;
     }
 }
 declare namespace LocalJSX {
     interface AppRoot {
+    }
+    interface GameBoard {
+        "player1"?: string;
+        "player2"?: string;
     }
     interface NewGame {
         "foo"?: string | undefined;
@@ -39,6 +54,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "app-root": AppRoot;
+        "game-board": GameBoard;
         "new-game": NewGame;
     }
 }
@@ -47,6 +63,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "game-board": LocalJSX.GameBoard & JSXBase.HTMLAttributes<HTMLGameBoardElement>;
             "new-game": LocalJSX.NewGame & JSXBase.HTMLAttributes<HTMLNewGameElement>;
         }
     }
