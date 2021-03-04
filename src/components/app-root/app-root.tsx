@@ -1,4 +1,5 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, State } from '@stencil/core';
+import { NewGameData } from '../new-game/new-game';
 
 @Component({
 	tag: 'app-root',
@@ -6,7 +7,17 @@ import { Component, h } from '@stencil/core';
 	shadow: true,
 })
 export class AppRoot {
+	@State() private running: boolean = false;
+	@State() private data: NewGameData | undefined;
+
+	startGame(data: NewGameData) {
+		this.running = true;
+		this.data = data;
+	}
+
 	render() {
+		const newGame = this.running? undefined : <new-game foo="bar" onStartNewGame={e => this.startGame(e.detail)}></new-game>
+
 		return (
 			<div>
 				<header>
@@ -14,7 +25,7 @@ export class AppRoot {
 				</header>
 
 				<main>
-					<new-game></new-game>
+					{ newGame }
 				</main>
 			</div>
 		);

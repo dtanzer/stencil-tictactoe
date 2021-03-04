@@ -1,4 +1,4 @@
-import { Component, Host, h, State, EventEmitter, Event } from '@stencil/core';
+import { Component, Host, h, State, EventEmitter, Event, Prop } from '@stencil/core';
 
 export interface NewGameData {
 	player1: string,
@@ -15,6 +15,7 @@ export class NewGame {
 	@State() private player1Name: string = '';
 	@State() private player2Name: string = '';
 
+	@Prop() foo: string | undefined;
 	@Event() startNewGame: EventEmitter<NewGameData> | undefined;
 
 	render() {

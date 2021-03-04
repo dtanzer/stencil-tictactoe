@@ -9,6 +9,7 @@ export namespace Components {
     interface AppRoot {
     }
     interface NewGame {
+        "foo": string | undefined;
     }
 }
 declare global {
@@ -33,6 +34,7 @@ declare namespace LocalJSX {
     interface AppRoot {
     }
     interface NewGame {
+        "foo"?: string | undefined;
         "onStartNewGame"?: (event: CustomEvent<any>) => void;
     }
     interface IntrinsicElements {
