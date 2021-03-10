@@ -1,3 +1,28 @@
 :host {
-  display: block;
+	display: block;
+	padding: 1em;
+}
+
+.row {
+	display: flex;
+}
+
+.field {
+	display: block;
+	width: 10rem;
+	height: 10rem;
+	font-size: 8rem;
+	border: none;
+	background: none;
+	outline: none;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.field:last-child {
+	border-right: none;
+}
+
+.row:last-child .field {
+	border-bottom: none;
 }
